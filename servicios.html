@@ -51,10 +51,10 @@
                     <a href="contacto.html" class="hover:text-secondary transition-colors">Contacto</a>
                 </div>
                 
-                <!-- Botón de menú móvil -->
-                <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                <!-- Botón de menú móvil mejorado -->
+                <button id="menu-toggle" class="md:hidden text-white focus:outline-none bg-primary/80 hover:bg-secondary hover:text-primary p-2 rounded-lg transition-colors shadow-md" style="min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
             </nav>
@@ -578,5 +578,47 @@
     </main> <!-- Cierre de la etiqueta main -->
     
     <script src="js/main.js"></script>
+    
+    <!-- Script para manejar el menú móvil - versión mejorada -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Funcionalidad para el botón de menú móvil - versión mejorada
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuToggle && mobileMenu) {
+                // Usar una función nombrada para poder removerla si es necesario
+                function toggleMobileMenu(e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Evitar que el clic se propague
+                    mobileMenu.classList.toggle('hidden');
+                    console.log('Menu toggled, visible:', !mobileMenu.classList.contains('hidden'));
+                }
+                
+                // Remover listeners previos que pudieran existir
+                const newMenuToggle = menuToggle.cloneNode(true);
+                menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
+                
+                // Asignar el listener al botón clonado
+                newMenuToggle.addEventListener('click', toggleMobileMenu, true);
+                
+                // Asegurarnos que el menú esté oculto al inicio
+                mobileMenu.classList.add('hidden');
+                
+                // Cerrar el menú al hacer clic en cualquier enlace dentro del menú móvil
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+                
+                // Añadir un log para confirmar que el script se ejecutó
+                console.log('Mobile menu initialization complete');
+            } else {
+                console.error('Mobile menu elements not found');
+            }
+        });
+    </script>
 </body>
 </html>
