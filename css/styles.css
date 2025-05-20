@@ -57,10 +57,10 @@ body {
 /* Estilos para el botón de WhatsApp */
 .whatsapp-button {
     position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
+    bottom: 20px;
+    right: 15px;
+    width: 55px;
+    height: 55px;
     background-color: #25D366;
     color: white;
     border-radius: 50%;
@@ -73,6 +73,18 @@ body {
     animation: whatsapp-bounce 2s infinite;
     transition: transform 0.3s ease;
     text-decoration: none; /* Asegura que no se muestre como un enlace */
+    /* Mejor posicionamiento para dispositivos móviles */
+    transform-origin: center center;
+}
+
+/* Ajustes específicos para dispositivos móviles */
+@media (max-width: 768px) {
+    .whatsapp-button {
+        bottom: 15px;
+        right: 10px;
+        width: 50px;
+        height: 50px;
+    }
 }
 
 .whatsapp-button:hover {

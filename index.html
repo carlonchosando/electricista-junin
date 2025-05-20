@@ -47,6 +47,26 @@
         }
     </script>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Prevenir desplazamiento horizontal en dispositivos móviles */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+        @media (max-width: 768px) {
+            .container {
+                max-width: 100%;
+                padding-left: 10px;
+                padding-right: 10px;
+                box-sizing: border-box;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    </style>
 </head>
 <body class="font-sans text-dark bg-white">
     <!-- Header y navegación -->
